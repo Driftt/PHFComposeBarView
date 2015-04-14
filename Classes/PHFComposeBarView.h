@@ -68,6 +68,8 @@ extern NSString *const PHFComposeBarViewFrameEndUserInfoKey;          // NSValue
 
 @property (strong, nonatomic, readonly) UITextView *textView;
 
+@property (strong, nonatomic, readonly) UIToolbar *backgroundView;
+
 @property (strong, nonatomic, readonly) UIButton *utilityButton;
 
 // Default is nil. Images should be white on transparent background. The side

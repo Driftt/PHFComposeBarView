@@ -21,17 +21,17 @@ CGFloat const kHorizontalSpacing          =  8.0f;
 CGFloat const kFontSize                   = 17.0f;
 CGFloat const kTextContainerTopMargin     =  8.0f;
 CGFloat const kTextContainerBottomMargin  =  8.0f;
-CGFloat const kTextContainerLeftPadding   =  3.0f;
+CGFloat const kTextContainerLeftPadding   =  8.0f;
 CGFloat const kTextContainerRightPadding  =  2.0f;
 CGFloat const kTextContainerTopPadding    =  4.0f;
 CGFloat const kTextContainerCornerRadius  = 5.25f;
 CGFloat const kTextViewTopMargin          = -8.0f;
 CGFloat const kPlaceholderHeight          = 25.0f;
-CGFloat const kPlaceholderSideMargin      =  8.0f;
+CGFloat const kPlaceholderSideMargin      =  12.0f;
 CGFloat const kPlaceholderTopMargin       =  2.0f;
 CGFloat const kButtonHeight               = 26.0f;
 CGFloat const kButtonTouchableOverlap     =  6.0f;
-CGFloat const kButtonRightMargin          = -2.0f;
+CGFloat const kButtonRightMargin          =  4.0f;
 CGFloat const kButtonBottomMargin         =  8.0f;
 CGFloat const kUtilityButtonWidth         = 25.0f;
 CGFloat const kUtilityButtonHeight        = 25.0f;
@@ -269,14 +269,15 @@ static CGFloat kTextViewToSuperviewHeightDelta;
 }
 
 @synthesize backgroundView = _backgroundView;
-- (UIToolbar *)backgroundView {
+- (UIView *)backgroundView {
     if (!_backgroundView) {
         CGRect frame = [self bounds];
         frame.origin.y = 0.5f;
-        _backgroundView = [[UIToolbar alloc] initWithFrame:frame];
-        [_backgroundView setBarStyle:UIBarStyleDefault];
-        [_backgroundView setTranslucent:YES];
-        [_backgroundView setTintColor:[UIColor whiteColor]];
+        _backgroundView = [[UIView alloc] initWithFrame:frame];
+        UIColor* backgroundColor = [UIColor colorWithRed:255 green:255 blue:255 alpha:.9];
+        [_backgroundView setBackgroundColor:backgroundColor];
+        _backgroundView.opaque = NO;
+        _backgroundView.layer.cornerRadius = 20.0;
         [_backgroundView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
     }
 
@@ -340,7 +341,7 @@ static CGFloat kTextViewToSuperviewHeightDelta;
         _textContainer = [UIButton buttonWithType:UIButtonTypeCustom];
         [_textContainer setFrame:textContainerFrame];
         [_textContainer setClipsToBounds:YES];
-        [_textContainer setBackgroundColor:[UIColor colorWithWhite:0.98f alpha:1.0f]];
+        [_textContainer setBackgroundColor:[UIColor clearColor]];
         [_textContainer setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
 
         CALayer *layer = [_textContainer layer];
@@ -609,7 +610,7 @@ static CGFloat kTextViewToSuperviewHeightDelta;
 
     [self setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleTopMargin];
 
-    [self addSubview:[self topLineView]];
+//    [self addSubview:[self topLineView]];
     [self addSubview:[self backgroundView]];
     [self addSubview:[self charCountLabel]];
     [self addSubview:[self button]];
